@@ -1,3 +1,4 @@
+<!-- Title: v4: stored requests with `null` fields (`payload`, `errorMessages`) can't be read, and the crawler hangs -->
 <!-- Bug report template: copy each section into the matching field. -->
 
 ### Which package is this bug report for?
@@ -110,3 +111,9 @@ crawler.run -> still running after 60 s (hang)
 ```
 
 This matters for migrating to v4: existing named request queues (often used to remember visited URLs across runs) contain v3-written records. Reading them is enough to hit the bug.
+
+Related issues:
+
+- #4087 and #1351: a `null` *inside* `errorMessages` (`[null]`) poisons persisted requests. Same family, but here the whole field is `null`, and it comes from the storage rather than from `pushErrorMessage`.
+- #4241: another v3 → v4 compatibility gap (persisted `RequestList` state is not picked up).
+- #3764: a different cause, but also a crawler that hangs forever instead of failing on one bad request.
