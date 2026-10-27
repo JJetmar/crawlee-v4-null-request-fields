@@ -1,0 +1,14 @@
+{
+    "name": "crawlee-v4-null-request-fields",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "repro": "node repro-minimal.mjs",
+        "repro:platform": "node repro-platform.mjs"
+    },
+    "dependencies": {
+        "apify": "4.0.0-rc.0",
+        "apify-client": "3.0.0-rc.0",
+        "crawlee": "4.0.0-rc.1"
+    }
+}
